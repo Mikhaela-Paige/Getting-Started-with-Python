@@ -1,18 +1,21 @@
 from random import shuffle
 
+# Class modeling playing cards
+
 
 class Card:
     suits = ["spades",
              "hearts",
              "diamonds",
              "clubs"]
-
+    # class variables
     values = [None, None, "2", "3",
               "4", "5", "6", "7",
               "8", "9", "10",
               "Jack", "Queen",
               "King", "Ace"]
 
+    # The values list has none at index zero and one so that the numbers in the list match their index
     def __init__(self, v, s):
         """suit + value are ints"""
         self.value = v
@@ -47,18 +50,22 @@ class Card:
 
 class Deck:
     def __init__(self):
+        # Creates card objects representing all the cards in the 52 card deck
         self.cards = []
-        for i in range(2, 15):
-            for j in range(4):
+        for i in range(2, 15):  # Picks value of card
+            for j in range(4):  # Picks suit of card
                 self.cards\
                     .append(Card(i,
                                  j))
         shuffle(self.cards)
+    # Removes and returns a card from the cards list or returns none
 
     def rm_card(self):
         if len(self.cards) == 0:
             return
         return self.cards.pop()
+
+# Now need a class to represent each player in the game to keep track of their cards and how many wins
 
 
 class Player:
@@ -67,9 +74,12 @@ class Player:
         self.card = None
         self.name = name
 
+# class to represent the game
+
 
 class Game:
     def __init__(self):
+        # Initialise 2 players and deal deck to them
         name1 = input("p1 name ")
         name2 = input("p2 name ")
         self.deck = Deck()
@@ -97,7 +107,7 @@ class Game:
                 "key to play:"
             response = input(m)
             if response == 'q':
-                break
+                break  # ends the game
             p1c = self.deck.rm_card()
             p2c = self.deck.rm_card()
             p1n = self.p1.name
