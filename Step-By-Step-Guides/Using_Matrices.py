@@ -27,7 +27,7 @@ b = int(input("Enter how many columns: "))
 
 print("\n")
 
-# Asking the user to initializa the elements of the matrices...
+# Asking the user to initialize the elements of the matrices...
 print("Enter the elements of the first matrix please")
 first_matrix = [[0 for i in range(a)] for j in range(b)]
 for i in range(a):
@@ -45,6 +45,7 @@ second_matrix = np.array(second_matrix)
 
 print("\n")
 
+# Printing the matrices!
 print("The first matrix given is: \n", first_matrix)
 print("The second matrix given is: \n", second_matrix)
 
