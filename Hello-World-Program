@@ -1,0 +1,24 @@
+from qiskit import *
+from qiskit.tools.monitor import *
+from qiskit.tools.visualization import *
+IBMQ.save_account('#IBM Quantum Experience API Key')
+
+circuit = QuantumCircuit(2,2)
+%matplotlib inline
+circuit.draw(initial_state = True)
+
+circuit.h(0)
+circuit.draw()
+
+circuit.cx(0,1)
+circuit.measure([0,1],[0,1])
+IBMQ.load_account()
+provider = IBMQ.get_provider('ibm-q')
+provider.backends()
+qcomp = provider.get_backend('#name of backend')
+job = execute(circuit, backend = qcomp)
+job_monitor(job)
+
+result = job.result()
+count = result.get_counts(circuit)
+plot_histogram(count)
