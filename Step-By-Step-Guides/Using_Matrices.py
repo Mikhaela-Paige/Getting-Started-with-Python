@@ -22,39 +22,38 @@ def MatrixMultiplication(matrix_a, matrix_b):
     return np.array(matrix_c)
 
 # Taking the shape-input from user...
-a = int(input("Enter how many rows: "))
-b = int(input("Enter how many columns: "))
+rows = int(input("Enter how many rows: "))
+columns = int(input("Enter how many columns: "))
 
-print("\n")
+# Asking the user to initialize the elements of the first matrix...
+print("Please write the elements of the matrix in a single line and separated by a space: ")  
+elements = list(map(int, input().split()))  
+matrix = np.array(elements).reshape(rows, columns)  
 
-# Asking the user to initialize the elements of the matrices...
-print("Enter the elements of the first matrix please")
-first_matrix = [[0 for i in range(a)] for j in range(b)]
-for i in range(a):
-    for j in range(b):
-        first_matrix[i][j] += int(input("first_matrix["+str(i)+"]["+str(j)+"]: "))
-first_matrix = np.array(first_matrix)
+# Asking the user to initialize the elements of the second matrix...
+rows2 = int(input("Give the number of rows:"))  
+columns2 = int(input("Give the number of columns:")) 
+print("Please write the elements of the matrix in a single line and separated by a space: ")  
+elements2 = list(map(int, input().split()))  
+matrix2 = np.array(elements2).reshape(rows2, columns2)  
 
-print("Now enter the elements of the second matrix please")
+# Printing the initial matrices...
+print("The first matrix given is: \n", matrix)
+print("The second matrix given is: \n", matrix2)
 
-second_matrix = [[0 for i in range(a)] for j in range(b)]
-for i in range(a):
-    for j in range(b):
-        second_matrix[i][j] += int(input("second_matrix["+str(i)+"]["+str(j)+"]: "))
-second_matrix = np.array(second_matrix)
+# Printing the calculated matrices...
+if rows == columns and rows2 == columns2:
+    resultant_sum_matrix = MatrixAddition(matrix, matrix2)
+    print("The sum of the given matrices is:")
+    # time.sleep(0.5)
+    print(resultant_sum_matrix)
+else:
+    print("Only square matrices may be added at this time")
 
-print("\n")
-
-# Printing the matrices!
-print("The first matrix given is: \n", first_matrix)
-print("The second matrix given is: \n", second_matrix)
-
-resultant_sum_matrix = MatrixAddition(first_matrix, second_matrix)
-print("The sum of the given matrices is:")
-# time.sleep(0.5)
-print(resultant_sum_matrix)
-
-resultant_product_matrix= MatrixMultiplication(first_matrix, second_matrix)
-print("The product of the given matrices is: ")
-# time.sleep(0.5)
-print(resultant_product_matrix)
+if rows == columns and rows2 == columns2:
+    resultant_product_matrix= MatrixMultiplication(matrix, matrix2)
+    print("The product of the given matrices is: ")
+    # time.sleep(0.5)
+    print(resultant_product_matrix)
+else:
+    print("Only square matrices may be multiplied at this time")
