@@ -29,7 +29,7 @@ def mergeSort(array):
                 j += 1
             k += 1
 
-        # Checking to see if there are any left out unsorted elements
+        # Checking to see if there are any unsorted elements left out...
         while i < len(left_half):
             array[k] = left_half[i]
             i += 1
