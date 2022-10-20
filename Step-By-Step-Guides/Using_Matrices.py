@@ -12,14 +12,18 @@ def MatrixAddition(matrix_a, matrix_b):
 
 # Defining a function that multiplies two matrices 
 def MatrixMultiplication(matrix_a, matrix_b):
-    m,n = matrix_a.shape
-    n,p= matrix_b.shape
-    matrix_c = [[0 for i in range(m)] for j in range(n)]
-    for i in range(m):
-        for j in range(p):
-            for k in range(n):
-                matrix_c[i][j] += matrix_a[i][k]*matrix_b[k][j]
-    return np.array(matrix_c)
+    output = [[0,0,0,0],  
+         [0,0,0,0],  
+         [0,0,0,0]]  
+    # Iterating through the rows of matrix1  
+    for i in range(len(matrix_a)):  
+      # iterating through the columns of matrix2  
+     for j in range(len(matrix_b[0])):  
+           # iterating through the rows of matrix2  
+          for k in range(len(matrix2)):  
+              output[i][j] += matrix_a[i][k] * matrix_b[k][j]
+    for row in output:  
+        print(row)
 
 # Taking the shape-input from user...
 rows = int(input("Enter how many rows: "))
@@ -50,10 +54,6 @@ if rows == columns and rows2 == columns2:
 else:
     print("Only square matrices may be added at this time")
 
-if rows == columns and rows2 == columns2:
-    resultant_product_matrix= MatrixMultiplication(matrix, matrix2)
-    print("The product of the given matrices is: ")
-    # time.sleep(0.5)
-    print(resultant_product_matrix)
-else:
-    print("Only square matrices may be multiplied at this time")
+print("The product of the given matrices is:")
+# time.sleep(0.5)
+resultant_product_matrix= MatrixMultiplication(matrix, matrix2)
