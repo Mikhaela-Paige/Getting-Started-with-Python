@@ -1,5 +1,5 @@
 from qiskit import *
-from qiskit.tools.visualization plot_histogram
+from qiskit.tools.visualization import plot_histogram
 
 #to generalise for any given secretnumber
 secretnumber = '#number'
