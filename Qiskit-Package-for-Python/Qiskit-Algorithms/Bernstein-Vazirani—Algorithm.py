@@ -20,7 +20,6 @@ for ii, yesno in enumerate(reversed(secretnumber)):
 circuit.barrier() #all barrier insertions are for visual purposes for the .draw function only, and are not a part of the algorithm
 circuit.draw(output = 'mpl')
 
-#
 circuit.h(range(len(secretnumber))) #[all of the bits in the secret number]
 circuit.barrier()
 circuit.draw(output = 'mpl')
