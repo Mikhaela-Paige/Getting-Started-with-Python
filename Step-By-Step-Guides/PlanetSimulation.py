@@ -1,25 +1,36 @@
+# importing the required Packages
 import pygame
 import math
+
+# To initialize all imported pygame modules
 pygame.init()
 
+# Setting the Width & Height of the Output Window
 WIDTH , HEIGHT = 1000,800
 WIN = pygame.display.set_mode((WIDTH,HEIGHT))
+
+# Setting the Caption of the Output Window
 pygame.display.set_caption("Planet Simulation")
 
+# RGB Color Codes of 5 Different Colors
 white = (255, 255, 255)
 yellow = (255, 255, 0)
 blue = (100, 149, 237)
 red = (188, 39, 50)
 dark_grey = (80, 78, 81)
 
+# Setting the Font to be displayed in the Output Window
 FONT = pygame.font.SysFont("comicsans", 16)
 
+# Creation of Class "Planet"
 class Planet:
+    # Setting the required Scale Parameters
     AU = 149.6e6 * 1000
     G = 6.67428e-11
     SCALE = 250 / AU   # 1AU = 100 pixels
     timestep = 3600 * 24 # 1 day
     
+    # Defining the Construtor to Initialize all the class variables
     def __init__(self,x,y,radius,color,mass):
         self.x = x
         self.y = y
@@ -33,7 +44,8 @@ class Planet:
         
         self.x_vel = 0
         self.y_vel = 0
-        
+    
+    # Function to draw the Orbit Path of Planets
     def draw(self, win):
         x = self.x * self.SCALE + (WIDTH / 2)
         y = self.y * self.SCALE + (HEIGHT / 2)
@@ -53,7 +65,8 @@ class Planet:
         if not self.sun:
             distance_text = FONT.render(f"{round(self.distance_to_sun/1000, 1)} km", 1, white )
             win.blit(distance_text,(x - distance_text.get_width()/2, y - distance_text.get_width()/2))
-        
+    
+    # Function to set the distance of Planets with respect to Sun
     def attraction(self, other):
         other_x, other_y = other.x, other.y
         distance_x = other_x - self.x
@@ -68,7 +81,8 @@ class Planet:
         force_X = math.cos(theta) * force
         force_Y = math.sin(theta) * force
         return force_X, force_Y
-        
+    
+    # Function to Update the Positions of Planets with respect to Time
     def update_position(self,planets):
         total_fx = total_fy = 0
         for planet in planets:
@@ -91,6 +105,8 @@ class Planet:
 def main():
     run = True
     clock = pygame.time.Clock()
+    
+    # creating 5 objects for 5 planets
     
     sun = Planet(0, 0, 30,  yellow, 1.98892 * 10**30)
     sun.sun = True
@@ -123,6 +139,8 @@ def main():
             
         pygame.display.update()
     
+    # exiting the game
     pygame.quit()
-    
+
+# Running the Main Function 
 main()
